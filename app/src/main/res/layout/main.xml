@@ -31,6 +31,13 @@
         android:layout_height="wrap_content"
         android:scrollbars="horizontal" />
 
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/mood_spinner"
+        android:prompt="@string/mood_prompt" />
+
     <Button
         android:id="@+id/clear"
         android:layout_width="match_parent"
@@ -42,5 +49,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/save" />
+
 
 </LinearLayout>
