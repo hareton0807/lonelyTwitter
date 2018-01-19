@@ -17,6 +17,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class LonelyTwitterActivity extends Activity {
 
@@ -38,9 +43,38 @@ public class LonelyTwitterActivity extends Activity {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
-				String text = bodyText.getText().toString();
-				saveInFile(text, new Date(System.currentTimeMillis()));
+
+
+				final Spinner mySpinner = (Spinner) findViewById(R.id.spinner1);
+				String selection = mySpinner.getSelectedItem().toString();
+
+				if (selection.compareTo("Happy") == 0){
+
+					String text = bodyText.getText().toString();
+					String modified_text = " Happy! "+text;
+					saveInFile(modified_text, new Date(System.currentTimeMillis()));
+				}
+				else if (selection.compareTo("Sad") == 0){
+
+					String text = bodyText.getText().toString();
+					String modified_text = " Sad! "+text;
+					saveInFile(modified_text, new Date(System.currentTimeMillis()));
+				}
+				else if (selection.compareTo("Angry") == 0){
+					String text = bodyText.getText().toString();
+					String modified_text = " Angry!  "+text;
+					saveInFile(modified_text, new Date(System.currentTimeMillis()));
+				}
+				else{
+					String text = bodyText.getText().toString();
+					String modified_text = " Thrilled!  "+text;
+					saveInFile(modified_text, new Date(System.currentTimeMillis()));
+				}
+
 				finish();
+
+
+
 
 			}
 		});
