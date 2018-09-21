@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import android.util.Log;
+
 public class LonelyTwitterActivity extends Activity {
 
 	private static final String FILENAME = "file.sav";
@@ -42,7 +44,18 @@ public class LonelyTwitterActivity extends Activity {
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				setResult(RESULT_OK);
+
+                String text = bodyText.getText().toString();
+
+                ImportantTweet importantTweet = new ImportantTweet();
+                try{
+                    importantTweet.setMessage(text);
+                }catch(TooLongTweetException e){
+
+                }
+                saveInFile(text, new Date(System.currentTimeMillis()));
+
+
 
 
 				final Spinner mySpinner = (Spinner) findViewById(R.id.spinner1);
@@ -70,9 +83,6 @@ public class LonelyTwitterActivity extends Activity {
 					String modified_text = " Thrilled!  "+text;
 					saveInFile(modified_text, new Date(System.currentTimeMillis()));
 				}
-
-				finish();
-
 
 
 
