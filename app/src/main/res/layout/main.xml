@@ -39,6 +39,12 @@
         android:prompt="@string/mood_prompt" />
 
     <Button
+        android:id="@+id/add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Emotion" />
+
+    <Button
         android:id="@+id/clear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

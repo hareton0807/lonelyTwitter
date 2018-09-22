@@ -23,12 +23,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import android.util.Log;
+
 public class LonelyTwitterActivity extends Activity {
 
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
-	
+
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,43 +40,63 @@ public class LonelyTwitterActivity extends Activity {
 
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
+		Button addButton = (Button) findViewById(R.id.add);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
+
+		final NormalTweet myTweet = new NormalTweet();
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+
+                final Spinner mySpinner = (Spinner) findViewById(R.id.spinner1);
+                String selection = mySpinner.getSelectedItem().toString();
+
+
+                if (selection.compareTo("Happy") == 0){
+
+                    Happy myMood = new Happy();
+                    myTweet.setMoods(myMood);
+
+                }
+                else if (selection.compareTo("Sad") == 0){
+
+                    Sad myMood = new Sad();
+                    myTweet.setMoods(myMood);
+
+                }
+                else if (selection.compareTo("Angry") == 0){
+                    Angry myMood = new Angry();
+                    myTweet.setMoods(myMood);
+
+                }
+                else{
+                    Thrilled myMood = new Thrilled();
+                    myTweet.setMoods(myMood);
+
+                }
+
+            }
+
+        });
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				setResult(RESULT_OK);
 
+			    String moodText = myTweet.getMoods();
 
-				final Spinner mySpinner = (Spinner) findViewById(R.id.spinner1);
-				String selection = mySpinner.getSelectedItem().toString();
+                String text = bodyText.getText().toString();
 
-				if (selection.compareTo("Happy") == 0){
+                text = moodText + text;
 
-					String text = bodyText.getText().toString();
-					String modified_text = " Happy! "+text;
-					saveInFile(modified_text, new Date(System.currentTimeMillis()));
+				try{
+					myTweet.setMessage(text);
+				}catch(TweetTooLongException e){
+
 				}
-				else if (selection.compareTo("Sad") == 0){
-
-					String text = bodyText.getText().toString();
-					String modified_text = " Sad! "+text;
-					saveInFile(modified_text, new Date(System.currentTimeMillis()));
-				}
-				else if (selection.compareTo("Angry") == 0){
-					String text = bodyText.getText().toString();
-					String modified_text = " Angry!  "+text;
-					saveInFile(modified_text, new Date(System.currentTimeMillis()));
-				}
-				else{
-					String text = bodyText.getText().toString();
-					String modified_text = " Thrilled!  "+text;
-					saveInFile(modified_text, new Date(System.currentTimeMillis()));
-				}
-
-				finish();
-
-
+				saveInFile(text, new Date(System.currentTimeMillis()));
 
 
 			}
@@ -110,7 +133,7 @@ public class LonelyTwitterActivity extends Activity {
 		}
 		return tweets.toArray(new String[tweets.size()]);
 	}
-	
+
 	private void saveInFile(String text, Date date) {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
