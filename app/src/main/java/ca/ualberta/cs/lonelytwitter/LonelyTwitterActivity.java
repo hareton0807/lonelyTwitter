@@ -1,3 +1,14 @@
+
+/*
+ * Class name: LonelyTwitterActivity
+ *
+ * Class version: 1.0
+ *
+ * Date: October 4,2018
+ *
+ * Copyright (c) Team X, CMPUT301, University of Alberta - All Rights Reserved. You may use, distribute, or modify this code under terms and conditions of the Code of Students Behavior at University of Alberta
+ */
+
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
@@ -25,16 +36,20 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+
+/**
+ * The type Lonely twitter activity.
+ */
 public class LonelyTwitterActivity extends Activity {
 
     private static final String FILENAME = "file2.sav";
     private EditText bodyText;
     private ListView oldTweetsList;
 
-    private ArrayList<Tweet> tweets = new ArrayList<Tweet>(); /* global var, it is everywhere */
+    private ArrayList<Tweet> tweets = new ArrayList<Tweet>();
 
     private ArrayAdapter<Tweet> adapter;
-    /** Called when the activity is first created. */
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,16 +97,13 @@ public class LonelyTwitterActivity extends Activity {
 
             Gson gson = new Gson();
             Type listTweetType = new TypeToken<ArrayList<ImportantTweet>>(){}.getType();
-            /* It creats a type which is the arraylist containing I.*/
+
             tweets = gson.fromJson(reader,listTweetType);
-            /* WE want the return type to be listTweetType.*/
+
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             tweets = new ArrayList<Tweet>();
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 

@@ -1,10 +1,13 @@
 package ca.ualberta.cs.lonelytwitter;
 
-/**
- * Created by chenlin on 9/20/18.
- */
 
+/**
+ * The interface Flying behaviour.
+ */
 public interface FlyingBehaviour {
 
+    /**
+     * Does like flying.
+     */
     public void doesLikeFlying();
 }

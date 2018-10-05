@@ -1,12 +1,18 @@
 package ca.ualberta.cs.lonelytwitter;
 
-/**
- * Created by chenlin on 9/20/18.
- */
 
 import android.util.Log;
 
+/**
+ * The type Domestic duck.
+ */
 public class DomesticDuck extends Animal implements FlyingBehaviour {
+    /**
+     * Instantiates a new Domestic duck.
+     *
+     * @param type the type
+     * @param food the food
+     */
     public DomesticDuck(String type, String food){
         super(type,food);
     }
