@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">I said:</string>
+    <string name="app_name">LonelyTwitter</string>
+    <string name="save">Save</string>
+    <string name="clear">Clear</string>
+    <string name="mood_prompt">Mood</string>
+    <string-array name="mood_spinner">
+        <item>Happy</item>
+        <item>Sad</item>
+        <item>Angry</item>
+        <item>Thrilled</item>
+    </string-array>
+</resources>
